@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>垂直居中 - 块级元素 - 高度不知道</title>
+	<style>
+		body {
+			background: #f06d06;
+			font-size: 80%;
+		}
+
+		main {
+			background: white;
+			height: 300px;
+			margin: 20px;
+			width: 300px;
+			position: relative;
+			resize: vertical;
+			overflow: auto;
+		}
+
+		main div {
+			position: absolute;
+			top: 50%;
+			left: 20px;
+			right: 20px;
+			background: black;
+			color: white;
+			padding: 20px;
+			transform: translateY(-50%);
+			resize: vertical;
+			overflow: auto;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<div>
+		 我是一个块级元素，我不知道自己的高度。
+		</div>
+	</main>
+</body>
+</html>

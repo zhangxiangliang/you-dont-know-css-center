@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>水平居中 - 多个块级元素同行居中</title>
+	<style>
+		body {
+			background: #f06d06;
+			font-size: 80%;
+		}
+		main {
+			background: white;
+			margin: 20px 0;
+			padding: 10px;
+		}
+		main div {
+			background: black;
+			color: white;
+			padding: 15px;
+			max-width: 125px;
+			margin: 5px;
+		}
+		.inline-block-center {
+			text-align: center;
+		}
+		.inline-block-center div{
+			display: inline-block;
+			text-align: left;
+		}
+		.flex-center {
+			display: flex;
+			justify-content: center;
+		}
+	</style>
+</head>
+<body>
+	<main class="inline-block-center">
+		<div>我是一个块级元素，使用 inline-block 来居中哦。</div>
+		<div>我是一个块级元素，使用 inline-block 来居中哦。</div>
+		<div>我是一个块级元素，使用 inline-block 来居中哦。</div>
+	</main>
+	<main class="flex-center">
+		<div>我是一个块级元素，使用 flexbox 来居中哦。</div>
+		<div>我是一个块级元素，使用 flexbox 来居中哦。</div>
+		<div>我是一个块级元素，使用 flexbox 来居中哦。</div>
+	</main>
+</body>
+</html>

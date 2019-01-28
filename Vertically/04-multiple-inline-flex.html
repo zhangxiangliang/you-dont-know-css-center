@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>垂直居中 - 多行行内元素 - 利用 flexbox</title>
+	<style>
+		body {
+			background: #f06d06;
+			font-size: 80%;
+		}
+
+		div {
+			background: white;
+			width: 240px;
+			margin: 20px;
+		}
+
+		.flex-center {
+			background: black;
+			color: white;
+			border: 10px solid white;
+			height: 200px;
+			resize: vertical;
+			overflow: auto;
+		}
+		.flex-center p {
+			margin: 0;
+			padding: 20px;
+		}
+		/*方法：*/
+		.flex-center {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="flex-center">
+		<p>多行行内元素 - 利用 table 的 vertical-align。多行行内元素 - 利用 table 的 vertical-align。多行行内元素 - 利用 table 的 vertical-align。多行行内元素 - 利用 table 的 vertical-align。多行行内元素 - 利用 table 的 vertical-align。</p>
+	</div>
+</body>
+</html>

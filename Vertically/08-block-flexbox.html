@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>垂直居中 - 块级元素 - 利用flexbox</title>
+	<style>
+		body {
+			background: #f06d06;
+			font-size: 80%;
+		}
+
+		main {
+			background: white;
+			height: 300px;
+			width: 200px;
+			padding: 20px;
+			margin: 20px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			resize: vertical;
+			overflow: auto;
+		}
+
+		main div {
+			background: black;
+			color: white;
+			padding: 20px;
+			resize: vertical;
+			overflow: auto;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<div>
+		 我是一个块级元素，我要利用 flexbox。
+		</div>
+	</main>
+</body>
+</html>

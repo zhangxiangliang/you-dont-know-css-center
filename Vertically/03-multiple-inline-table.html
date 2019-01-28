@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>垂直居中 - 多行行内元素 - 利用 table 的 vertical-align</title>
+	<style>
+		body {
+			background: #f06d06;
+			font-size: 80%;
+		}
+		.center-table {
+		  display: table;
+		  height: 250px;
+		  background: white;
+		  width: 240px;
+		  margin: 20px;
+		}
+		.center-table p {
+			margin: 0;
+			background: black;
+			color: white;
+			padding: 20px;
+			border: 10px solid white;
+		}
+		/*方法：*/
+		.center-table {
+		  display: table;
+		}
+		.center-table p {
+			display: table-cell;
+			vertical-align: middle;
+		}
+	</style>
+</head>
+<body>
+	<div class="center-table">
+	  <p>多行行内元素 - 利用 table 的 vertical-align。多行行内元素 - 利用 table 的 vertical-align。多行行内元素 - 利用 table 的 vertical-align。多行行内元素 - 利用 table 的 vertical-align。多行行内元素 - 利用 table 的 vertical-align。</p>
+	</div>
+</body>
+</html>

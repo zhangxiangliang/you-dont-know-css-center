@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>水平居中 - 多个块级元素同列居中</title>
+	<style>
+		body {
+			background: #f06d06;
+			font-size: 80%;
+		}
+
+		main {
+			background: white;
+			margin: 20px 0;
+			padding: 10px;
+		}
+
+		main div {
+			background: black;
+			margin: 0 auto;
+			color: white;
+			padding: 15px;
+			margin: 5px auto;
+		}
+
+		main div:nth-child(1) {
+			width: 200px;
+		}
+		main div:nth-child(2) {
+			width: 400px;
+		}
+		main div:nth-child(3) {
+			width: 125px;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<div>
+			我是一个块级元素，我和我的兄弟们在同一排居中。
+		</div>
+		<div>
+			我是一个块级元素，我和我的兄弟们在同一排居中。
+		</div>
+		<div>
+			我是一个块级元素，我和我的兄弟们在同一排居中。
+		</div>
+	</main>
+</body>
+</html>
