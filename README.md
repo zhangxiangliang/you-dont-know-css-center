@@ -1,238 +1,207 @@
 # 你所不知道的 CSS 居中
- 
+
 ## 前言
 
-很多的小伙伴在，学习 `PHP` 的时候最早面对的问题之一就是 `require` 、 `include` 和 `require_once` 、`include_once` 的相爱相杀。
+> 这次翻译一篇来自 Chris Coyier 的 《Centering in CSS: A Complete Guide》
 
-在了解了它们相爱相杀的故事后，往往就开始使用起了框架。框架固然是干活的好工具，但是你知道你平时 `new` 一个新类的时候，发生了什么吗？有想过为什么我们 `遵循规范` 就会自动的帮我们做好一切的加载吗？ 让我们一切来探索发现其中的奥秘。
+`居中`是在`CSS`中经常被抱怨的问题之一。这个问题真的有这么难吗？事实上这个问题并`没有那么复杂`，它`困难`在于对于`不同的情景`，`解决`居中问题需要用到`不一样`的方法。
 
-<!--more-->
+在这里，我们会一起建立`思维导图`来帮助大家来`解决`这个问题。
+##### github 地址 [传送门](https://github.com/pushmetop/you-dont-know-css-center)
 
-## 时间线
+## 脑图
 
-### 蒸汽时代
+![mindmaps.png](https://raw.githubusercontent.com/pushmetop/resource/master/pushmetop.github.io/your-dont-know-css-center/mindmaps.png)
 
-在 `PHP` 代码的顶部你是不是经常看到这样的代码。
-
-```php
-require 'lionis.php';
-require 'is.php';
-require 'cool.php';
+## 水平居中
+### 行内元素
+##### `display`属性为`inline` 或者 `inline-*` 行内元素?（例如：文本或者链接）
+如果你需要居中的`行内元素`在`块级元素`中，你可以使用下面方法。
 ```
-
-如果只是引入几个 `PHP` 脚本，那还可以接受。那引入成千上万个脚本的时候，爆炸是在所难免的。如果对一个脚本改了个名字，还需要对引入改脚本的每个脚本改名，能不爆炸吗？连打出这段话都怎么绕。
-
-### 电气时代
-
-在 `PHP` 电气时代，开始出现了 `__autoload` 和 `spl_autoload_register` 函数注册自定义的自动加载策略。
-
-通俗的来说，`__autoload` 和 `spl_autoload_register` 是一个 `杀手组织`，他们会去雇佣 `各国杀手` (`函数`)。当我们想搞定某个人的时候（`new`），只需要提供名字(`类名`)，剩下的 `杀手` 会帮我们搞定的。
-
-##### __autoload
-PHP 5 开始提供这个函数 [传送门](http://php.net/manual/zh/function.autoload.php)。当你使用的 `类` 找不到的时候，它把类名当成参数扔进这个函数。
-
-```
-<?php
-// Lionis.php
-class Lionis {
-    public function __construct() {
-        echo '欧耶耶, 我就是 Lionis';
-    }
-}
-
-```
-
-```
-<?php
-// index.php
-function __autoload($classname) {
-    $filename = './' . $classname . '.php';
-    require_once $filename;
-}
-
-$lionis = new Lionis();
-```
-
-输出
-```
-欧耶耶, 我就是 Lionis
-```
-
-##### spl_autoload_register
-
-如果我们 `项目` 很大很老又或者你是一个 `爱折腾` 的少先队员，需要引入的东西有不一样的规范，这时候如果都放在 `__autoload` 函数里，这个函数马上就会膨胀的。而且 `__autoload` 是全局唯一的，如果被人占用了，可能会导致错误。（欲使一个人灭亡，必将先使其膨胀。）
-
-PHP 5.1.2 开始提供这个函数 [传送门](http://php.net/manual/zh/function.spl-autoload-register.php)，注册给定的函数作为 `__autoload` 的实现。所以，我们看一些框架或插件在自己使用的时候，为了兼容可能会出现 `function_exists(spl_autoload_register)`。
-
-```
-<?php
-function lionisIsCoolFind($classname) {
-    require './' . $classname . '.php';
-}
-
-// 函数
-spl_autoload_register('lionisIsCoolFind');
-
-// 匿名函数
-spl_autoload_register(function($require) {
-    require './' . $classname . '.php';
-});
-
-// 类中的函数
-spl_autoload_register(array('Lionis', 'loadClass'));
-```
-
-欧耶，这下我们可以写很多不同的自动加载函数了。
-
-### 信息时代
-
-`师傅小心，前面有妖气！` 。如果我们每个人都自己实现一套自动加载的方法，每个PHP `组件`和 `框架`都使用独特的自动加载器，而且每个框架使用不同的逻辑加载PHP类、接口和性状。
-
-那当我们使用一些第三方框架的时候，还需要去弄清楚引导文件中的 `自动加载器`，那样是有多和 `时间` 过不去呢。 `PHP-FIG` 认识到了这个问题了，推荐使用 `PSR-4` 规范，来促进组件之间的 `互操作性`，这样我们就可以使用一个自动加载器了。
-
-##### PSR-4 规范
-
-利用命名空间的前缀和文件系统中的目录对应起来。
-
-映射关系为
-```
-namespace    => filePath
-\Lionis\Cool => cool
-```
-
-带有命名空间的类
-```php
-<?php
-// 该文件为 cool/Real.php
-namespace \Lionis\Cool;
-
-class Real {
+.center-children {
+	text-align: center;
 }
 ```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Horizontally/01-inline-within-block.html)
 
-创建一个对象
+### 单个 - 块级元素
+##### 如果需要使得`块级元素居中`，可以利用`margin-left`和`margin-right`。
 ```
-<?php
-// 该文件为 index.php
-
-$lionis = new \Lionis\Cool\Real;
-
-```
-
-这个时候，按照 `PSR-4` 的规范，自动加载器应该去加载 `cool/` 目录下的 `Real.php`。
-
-`不对！`那这样不是还要自己去实现 `自动加载器` 嘛，不然怎么 `无中生有` 出现 `自动加载器` 呢？难道官方 `内置` 了?
-
-你 `out` 了吧，我们可以使用依赖管理器 `composer` 来生成 `PSR-4` 自动加载器。你可能会疑问，那我的旧项目没有遵循 `PSR-4` 规范怎么办？嘿嘿，让我们来探索发现一下 `composer` 是怎么解决这个问题的吧。
-
-## Composer
-
-哦吼吼，我们这次的重点在与探究自动加载，所以 `composer` 的安装和使用等，就不去讨论了。
-
-`composer` 自动加载设置了 4种 `加载方式`：
-
-* PSR-0
-* PSR-4
-* classmap
-* files
-
-### PSR-0
-
-要求命名空间和目录层层对应，且可以使用 `_` 作为路径分隔符，但是这会导致目录结果变得过深。
-
-在 `composer` 执行 `install` 等操作时，`composer` 会把文件中的配置存储在 `vendor/composer/autoload_psr0.php`文件中的返回数组中。
-
-例如：定义了Very\\Good=>vendor\\Lionis\\IsReal\\Cool，在调用 use Very\\Good\\Love\\SomeClass，`PSR-0` 加载的实际目录为 vendor/Lionis/IsReal/Cool/Very/Good/Love/SomeClass.php。
-
-对吧，这简直深得吓人，所以 `PSR-0` 被官方废除了。但是一些主流的框架已经实现了 `PSR-0`，为了向下兼容还是要实现 `PSR-0`。
-
-composer.json配置：
-```
-"autoload": {
-    "psr-0": {
-        "Very\\Good": "vendor\Lionis\IsReal\Cool"
-    }
+.center-me {
+	margin: 0 auto;
 }
 ```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Horizontally/02-block.html)
+##### 注意：不能是一个浮动的块级元素哦~
 
-### PSR-4
-
-`PSR-4` 是现在比较推荐的方法，用于替代 `PSR-0`。
-与 `PSR-0` 不同的是，取消掉了 `_` 作为分隔符和目录结构。
-
-在 `composer` 执行 `install` 等操作时，`composer` 会把文件中的配置存储在 `vendor/composer/autoload_psr4.php`文件中的返回数组中。
-
-例如：定义了Very\\Good=>vendor\\Lionis\\IsReal\\Cool，在调用 use Very\\Good\
-Love\\SomeClass，`PSR-4` 加载的实际目录为 vendor/Lionis/IsReal/Cool/Love/SomeClass.php。
-
-composer.json配置：
+### 多个 - 块级元素 - 同行居中
+##### 如果需要使得`多个块级元素居中`，这个时候用 `magin`可就不行啦，但是我们可以使用`inline-block`或者`flexbox`来实现居中。
+##### inline-block
+利用`行内元素`在`块级元素`中的居中方法，先让`内部`的`块级元素`变为行内元素，再对`父级`的`块级元素`使用居中。
 ```
-"autoload": {
-    "psr-4": {
-        "Very\\Good": "vendor\Lionis\IsReal\Cool"
-    }
+.center-parent {
+	text-align: center;
+}
+.center-parent .center-child{
+	display: inline-block;
 }
 ```
-
-### classmap
-
-`classmap` 通过配置指定的目录和文件，在 `composer` 执行 `install` 等操作时，`composer` 会去扫描对应的目录下以`.php`结尾的文件中的 `class`，并存储在 `vendor/composer/autoload_classmap.php`文件中的返回数组中。
-
-composer.json配置：
-
+##### flexbox
 ```
-"autoload": {
-    "classmap": [
-        "Lionis/",
-        "Xiaoer/"
-    ]
+.center-parent {
+	display: flex;
+	justify-content: center;
 }
 ```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Horizontally/03-more-block.html)
 
-如果 Lionis 下有一个叫 VeryCool的文件，那么在`vendor/composer/autoload_classmap.php` 中会生成。
-
+### 多个 - 块级元素 - 同列居中
+#####利用`单个块级元素`的`居中`方法,来实现`多个块级元素`的`垂直居中`。
 ```
-<?php
-
-// autoload_classmap.php @generated by Composer
-
-$vendorDir = dirname(dirname(__FILE__));
-$baseDir = dirname($vendorDir);
-
-return array(
-    'VeryCool' => $baseDir . '/Lionis/VeryCool.php',
-    // 其他的映射
-);
-```
-
-### files
-
-`files` 就是直接简单粗暴的加载文件。在 `composer` 执行 `install` 等操作时，`composer` 会把文件中的配置存储在 `vendor/composer/autoload_static.php`文件中的生成一个 `$files` 数组。
-
-composer.json 配置：
-```
-"autoload": {
-    "files": ["Lionis/Very/Cool.php"]
+.center-me {
+	margin: 0 auto;
 }
 ```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Horizontally/04-more-block-row.html)
 
-### 小结
+## 垂直居中
+### 单行 - 行内元素 
+##### `display`属性为`inline` 或者 `inline-*` 行内元素?（例如：文本或者链接）。可以利用`padding`或者`line-height`来实现。
+##### padding
+```
+.text {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/01-single-inline.html)
+#####  line-height （值和`height`一样）
+```
+.text {
+	height: 100px;
+	line-height: 100px;
+}
+```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/02-sigle-inline-height-line.html)
 
-`composer` 通过使用 `composer.json`，用 `json` 的格式来指定我们需要`自动加载`的`规则`。我们只要在入口文件引入 `vendor/autoload.php` 就能很方便的便能使用 `自动加载`。
+### 多行 - 行内元素
+##### 对于多行`行内元素`，如果使用`单行`的方法，在换行之后，会出现错误。这个时候可以利用`表格`的`vertical-align`或者`flexbox`或者`伪类`来实现。
+##### vertical-align
+```
+.center-table {
+	display: table;
+}
+.center-table p {
+	display: table-cell;
+	vertical-align: middle;
+}
+```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/03-multiple-inline-table.html)
+##### flexbox
+```
+.center-flexbox {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/04-multiple-inline-flex.html)
+##### 伪类
+```
+.center-parent {
+	position: relative;
+}
+.center-parent::before {
+	content: "";
+	display: inline-block;
+	height: 100%;
+	width: 1%;
+	vertical-align: middle;
+}
+.center-parent p {
+	display: inline-block;
+	vertical-align: middle;
+}
+```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/05-multiple-inline-ghost.html)
 
-如果你对 `composer` 实现 `自动加载` 的原理感兴趣，可以顺着 `vendor` 中的 `autoload.php` 去看看源码。
+### 块级元素
+##### 元素高度知道
+```
+.parent {
+	position: relative;
+}
+.child {
+	position: absolute;
+	top: 50%;
+	height: 100px;
+	margin-top: -50px; // 高度的一半
+}
+```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/06-block-know-height.html)
+##### 元素高度不知道
+```
+.parent {
+	position: relative;
+}
+.child {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/07-block-dont-know-height.html)
+##### flexbox
+```
+.parent {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/08-block-flexbox.html)
 
-## 总结
+## 垂直水平居中
+##### 宽度和高度知道(利用`垂直居中`的`块级元素`高度知道)
+```
+.parent {
+  position: relative;
+}
 
-从 `石器时代` 到 `信息时代`，`PHP` 经历了很多试验和改变后正在变得越来越好。当然，许多优秀的框架让我们开发速度更快，需要理解的一些知识点也随之被隐藏起来，让我们更加专注于实现逻辑。但是，我们有的时候还是要尝试的去理解他们工作的原理，来提升我们自己。像我老师说过的，所不定一下子踩到狗屎运了呢。
+.child {
+  width: 200px;
+  height: 100px;
 
-## 更多
+  position: absolute;
+  top: 50%;
+  left: 50%;
 
-[细说 PHP 类库自动加载](https://github.com/qinjx/adv_php_book/blob/master/class_autoload.md)
-
-## 打赏&联系
-
-如果您感觉有收获，欢迎给我打赏，以激励我输出更多的优质内容。
+  margin: -50px 0 0 -100px;
+}
+```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Both/01-know-element-height.html)
+##### 宽度和高度不知道(利用`垂直居中`的`块级元素`高度不知道)
+```
+.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Both/02-dont-know-element-height.html)
+##### flexbox
+```
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
+##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Both/03-use-flexbox.html)
 
 ![打赏&联系](https://raw.githubusercontent.com/pushmetop/resource/master/donate/donate.png)
 
