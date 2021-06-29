@@ -7,11 +7,11 @@
 `居中`是在`CSS`中经常被抱怨的问题之一。这个问题真的有这么难吗？事实上这个问题并`没有那么复杂`，它`困难`在于对于`不同的情景`，`解决`居中问题需要用到`不一样`的方法。
 
 在这里，我们会一起建立`思维导图`来帮助大家来`解决`这个问题。
-##### github 地址 [传送门](https://github.com/pushmetop/you-dont-know-css-center)
+##### github 地址 [传送门](https://github.com/zhangxiangliang/you-dont-know-css-center)
 
 ## 脑图
 
-![mindmaps.png](https://raw.githubusercontent.com/pushmetop/resource/master/pushmetop.github.io/your-dont-know-css-center/mindmaps.png)
+![mindmaps.png](./images/mindmaps.png)
 
 ## 水平居中
 ### 行内元素
@@ -22,7 +22,7 @@
 	text-align: center;
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Horizontally/01-inline-within-block.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/horizontally/01-inline-within-block.html)
 
 ### 单个 - 块级元素
 ##### 如果需要使得`块级元素居中`，可以利用`margin-left`和`margin-right`。
@@ -31,7 +31,7 @@
 	margin: 0 auto;
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Horizontally/02-block.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/horizontally/02-block.html)
 ##### 注意：不能是一个浮动的块级元素哦~
 
 ### 多个 - 块级元素 - 同行居中
@@ -53,7 +53,7 @@
 	justify-content: center;
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Horizontally/03-more-block.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/horizontally/03-more-block.html)
 
 ### 多个 - 块级元素 - 同列居中
 #####利用`单个块级元素`的`居中`方法,来实现`多个块级元素`的`垂直居中`。
@@ -62,7 +62,7 @@
 	margin: 0 auto;
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Horizontally/04-more-block-row.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/horizontally/04-more-block-row.html)
 
 ## 垂直居中
 ### 单行 - 行内元素 
@@ -74,7 +74,7 @@
 	padding-bottom: 30px;
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/01-single-inline.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/vertically/01-single-inline.html)
 #####  line-height （值和`height`一样）
 ```
 .text {
@@ -82,7 +82,7 @@
 	line-height: 100px;
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/02-sigle-inline-height-line.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/vertically/02-sigle-inline-height-line.html)
 
 ### 多行 - 行内元素
 ##### 对于多行`行内元素`，如果使用`单行`的方法，在换行之后，会出现错误。这个时候可以利用`表格`的`vertical-align`或者`flexbox`或者`伪类`来实现。
@@ -96,7 +96,7 @@
 	vertical-align: middle;
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/03-multiple-inline-table.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/vertically/03-multiple-inline-table.html)
 ##### flexbox
 ```
 .center-flexbox {
@@ -105,7 +105,7 @@
 	flex-direction: column;
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/04-multiple-inline-flex.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/vertically/04-multiple-inline-flex.html)
 ##### 伪类
 ```
 .center-parent {
@@ -123,7 +123,7 @@
 	vertical-align: middle;
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/05-multiple-inline-ghost.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/vertically/05-multiple-inline-ghost.html)
 
 ### 块级元素
 ##### 元素高度知道
@@ -138,7 +138,7 @@
 	margin-top: -50px; // 高度的一半
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/06-block-know-height.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/vertically/06-block-know-height.html)
 ##### 元素高度不知道
 ```
 .parent {
@@ -150,7 +150,7 @@
 	transform: translateY(-50%);
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/07-block-dont-know-height.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/vertically/07-block-dont-know-height.html)
 ##### flexbox
 ```
 .parent {
@@ -159,7 +159,7 @@
 	justify-content: center;
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Vertically/08-block-flexbox.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/vertically/08-block-flexbox.html)
 
 ## 垂直水平居中
 ##### 宽度和高度知道(利用`垂直居中`的`块级元素`高度知道)
@@ -179,7 +179,7 @@
   margin: -50px 0 0 -100px;
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Both/01-know-element-height.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/both/01-know-element-height.html)
 ##### 宽度和高度不知道(利用`垂直居中`的`块级元素`高度不知道)
 ```
 .parent {
@@ -192,7 +192,7 @@
   transform: translate(-50%, -50%);
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Both/02-dont-know-element-height.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/both/02-dont-know-element-height.html)
 ##### flexbox
 ```
 .parent {
@@ -201,8 +201,13 @@
   align-items: center;
 }
 ```
-##### 例子：[传送门](https://github.com/pushmetop/you-dont-know-css-center/blob/master/Both/03-use-flexbox.html)
+##### 例子：[传送门](https://github.com/zhangxiangliang/you-dont-know-css-center/blob/master/both/03-use-flexbox.html)
 
-![打赏&联系](https://raw.githubusercontent.com/pushmetop/resource/master/donate/donate.png)
+## 一起成长
 
-> 本文原稿来自 [PushMetop](https://pushmetop.github.io)
+> 在困惑的城市里总少不了并肩同行的 `伙伴` 让我们一起成长。
+
+* 如果您想让更多人看到文章可以点个 `点赞`。
+* 如果您想激励小二可以到 [Github](https://github.com/zhangxiangliang/you-dont-know-css-center) 给个 `小星星`。
+
+> 本文原稿来自 [ZhangXiangLiang](https://github.com/zhangxiangliang)
